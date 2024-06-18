@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css" >
+		<title> template-html </title>
+    <script src="template-html.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => { processTemplatedHtml(document.documentElement) } )
+    </script>
+    <style>
+    .flex-row {
+      display: flex;
+      flex-flow: row wrap;
+      row-gap: var(--pico-block-spacing-vertical);
+      column-gap: var(--pico-block-spacing-horizontal);
+    }
+    </style>
+  </head>
+  <body class="container">
+    <header>
+      <nav>
+        <ul>
+          <li><strong> template-html Demo </strong></li>
+        </ul>
+        <template id="nav-elm">
+          <li>
+            <a href="#" data-attributes="href onclick" data-children></a>
+            <div class="all-attrs" data-attributes></div>
+          </li>
+        </template>
+        <ul>
+          <div data-from="nav-elm" data-other="idk"> Home </div>
+          <div data-from="nav-elm" onclick="alert('Hello world!')"> Hello world </div>
+          <div data-from="nav-elm" href="template-html.js"> Source </div>
+        </ul>
+      </nav>
+      <br>
+      <div class="flex-row" style="flex-wrap: nowrap;">
+        <h2 style="flex: 0 1 70%;"> Yet another lightweight <s>framework</s>? </h2>
+        <details class="dropdown" style="margin-left: auto;">
+          <summary role="button" class="secondary">Theme</summary>
+          <ul>
+            <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+            <li><a href="#" data-theme-switcher="light">Light</a></li>
+            <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+          </ul>
+        </details>
+      </div>
+      <h3> No, just really simple html-based templating </h3>
+      <template id="card">
+        <article data-children>
+          <h3> Javascript Coming Soon? </h3>
+          <p> Or just run alpine js </p>
+        </article>
+      </template>
+      <div data-from="card"><h1>h1</h1></div>
+      <div data-from="card"><h2>h2</h2></div>
+      <div data-from="card"><h3>h3</h3></div>
+      <div data-from="card"><h4>h4</h4></div>
+      <div data-from="card"><h5>h5</h5></div>
+      <div data-from="card"><h6>h6</h6></div>
+    </header>
+  </body>
+  <script src="minimal-theme-switcher.js"></script>
+</html>
+
