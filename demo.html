@@ -9,7 +9,9 @@
 		<title> template-html </title>
     <script src="template-html.js"></script>
     <script>
-    document.addEventListener("DOMContentLoaded", () => { processTemplatedHtml(document.documentElement) } )
+    let process;
+    processDOM = new Promise(resolve => { process = resolve; } );
+    window.setTimeout(process, 1000);
     </script>
     <style>
     .flex-row {
@@ -17,6 +19,18 @@
       flex-flow: row wrap;
       row-gap: var(--pico-block-spacing-vertical);
       column-gap: var(--pico-block-spacing-horizontal);
+    }
+
+    red-square {
+      width: 100px;
+      height: 100px;
+      background: red;
+      display: inline-block;
+    }
+
+    .customClass {
+      border-radius: 20px;
+      padding: 10px;
     }
     </style>
   </head>
@@ -53,17 +67,40 @@
       <h3> No, just really simple html-based templating </h3>
       <template id="card">
         <article data-children>
-          <h3> Javascript Coming Soon? </h3>
-          <p> Or just run alpine js </p>
+          <hgroup>
+            <h3> Javascript Coming Soon? </h3>
+            <p> Or just run alpine js </p>
+          </hgroup>
+          <strong data-children-clone>
+          </strong>
+          <br>
         </article>
       </template>
-      <div data-from="card"><h1>h1</h1></div>
-      <div data-from="card"><h2>h2</h2></div>
-      <div data-from="card"><h3>h3</h3></div>
-      <div data-from="card"><h4>h4</h4></div>
-      <div data-from="card"><h5>h5</h5></div>
-      <div data-from="card"><h6>h6</h6></div>
+      <div data-from="card"> This template system </div>
+      <div data-from="card"> Isn't meant to </div>
+      <div data-from="card"> Do any complex logic</div>
+      <div data-from="card"> Just for when</div>
+      <div data-from="card"> you don't want</div>
+      <div data-from="card"> to repeat yourself</div>
     </header>
+    <article>
+      <h1> Custom Elements made simple </h1>
+      <p> Need a reusable container ? </p>
+    </article>
+    <template data-custom-element="replace" id="flex-row-wrap">
+    <div data-children class="flex-row" style="margin-bottom: 1rem;"></div>
+    </template>
+    <flex-row-wrap>
+      <button> I am a button </button>
+      <button> I am a button </button>
+      <h4> not a button </h4>
+      <button> I am a button </button>
+      <h4> not a button </h4>
+      <button> I am a button </button>
+    </flex-row-wrap>
+    <template data-custom-element class="customClass" id="red-square">
+    </template>
+    <red-square>This is a red square</red-square>
   </body>
   <script src="minimal-theme-switcher.js"></script>
 </html>
